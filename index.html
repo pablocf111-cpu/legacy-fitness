@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legacy Fitness</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #EFEAE0;
+    --cream-2: #E4DDCF;
+    --charcoal: #1B1B1A;
+    --slate: #4A4740;
+    --gold: #A9895E;
+    --font-display: "Cormorant Garamond", serif;
+    --font-body: "Jost", sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+
+  /* ---------- Hero con la imagen real ---------- */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 560px;
+    overflow: hidden;
+  }
+  .hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* Botón invisible superpuesto exactamente sobre "entrar a lagacy" de la imagen */
+  .hero-cta {
+    position: absolute;
+    top: 74vh;
+    left: 50%;
+    width: 30vh;
+    max-width: 46%;
+    height: 8vh;
+    transform: translateX(-50%);
+    border-radius: 999px;
+    cursor: pointer;
+    text-indent: -9999px; /* el texto ya está dibujado en la imagen */
+    outline-offset: 4px;
+  }
+  .hero-cta:focus-visible {
+    outline: 2px solid #fff;
+  }
+  .hero-cta:hover {
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.35) inset;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255,255,255,0.85);
+    font-family: var(--font-body);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    pointer-events: none;
+  }
+  .scroll-hint svg { width: 16px; height: 16px; animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(6px);} }
+  @media (prefers-reduced-motion: reduce) { .scroll-hint svg { animation: none; } }
+
+  /* ---------- Sección de información ---------- */
+  .info {
+    padding: 100px 24px 90px;
+  }
+  .info-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .eyebrow {
+    display: block;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .info h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(30px, 4vw, 42px);
+    text-align: center;
+    margin: 0 0 60px;
+    color: var(--charcoal);
+  }
+  .block { margin-bottom: 52px; }
+  .block h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 3vw, 30px);
+    margin: 0 0 14px;
+    color: var(--charcoal);
+  }
+  .block p {
+    margin: 0;
+    font-size: 16.5px;
+    color: var(--slate);
+    font-weight: 300;
+  }
+
+  .stat-strip {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    flex-wrap: wrap;
+    padding: 34px 20px;
+    margin: 10px 0 60px;
+    border-top: 1px solid var(--cream-2);
+    border-bottom: 1px solid var(--cream-2);
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--gold);
+    display: block;
+  }
+  .stat-label {
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--slate);
+  }
+
+  /* ---------- Botones finales (decorativos) ---------- */
+  .links-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 30px;
+    border: 1px solid var(--charcoal);
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--charcoal);
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+  .link-btn:hover { background: var(--charcoal); color: var(--cream); }
+  .link-btn svg { width: 17px; height: 17px; }
+
+  footer {
+    text-align: center;
+    padding: 34px 20px 46px;
+    font-size: 12.5px;
+    color: var(--slate);
+    letter-spacing: 0.06em;
+  }
+</style>
+</head>
+<body>
+
+  <section class="hero" id="hero">
+    <img src="images/hero-legacy.jpg" alt="Interior del gimnasio Legacy Fitness con logo circular superpuesto">
+    <a class="hero-cta" href="#info" aria-label="Entrar a Legacy Fitness — ver información del gimnasio">entrar a legacy</a>
+    <div class="scroll-hint" aria-hidden="true">
+      Descubrí más
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </section>
+
+  <section class="info" id="info">
+    <div class="info-inner">
+      <span class="eyebrow">Legacy Fitness</span>
+      <h1>Un centro integral de transformación y recuperación</h1>
+
+      <div class="block">
+        <h2>¿Por qué nace Legacy Fitness?</h2>
+        <p>Legacy Fitness no nace como una alternativa tradicional de entrenamiento, sino como un centro integral de transformación personal y recuperación física. En un mercado saturado de recintos enfocados exclusivamente en la estética superficial, este proyecto surge para cubrir la brecha entre el alto rendimiento, la salud preventiva y la rehabilitación física adaptada.</p>
+      </div>
+
+      <div class="block">
+        <h2>¿Para qué existe?</h2>
+        <p>Existe para proveer un espacio inclusivo, técnico y equipado donde cada usuario —sin importar su condición de partida— pueda evolucionar hacia su mejor versión. El gimnasio está diseñado estructuralmente para atender tanto a atletas y jóvenes como a adultos mayores, personas en proceso de rehabilitación posoperatoria y usuarios con secuelas de lesiones complejas.</p>
+      </div>
+
+      <div class="block">
+        <h2>¿Cómo lo logra?</h2>
+        <p>Mediante una infraestructura optimizada de 460 m², maquinaria seleccionada por su biomecánica, asesoramiento profesional titulado y un plan financiero modular que reinvierte los ingresos en mejoras operativas constantes (como unidades de negocio internas y mantenimiento preventivo).</p>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><span class="stat-num">460 m²</span><span class="stat-label">Infraestructura</span></div>
+        <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Asesoramiento titulado</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Perfiles de usuario</span></div>
+      </div>
+
+      <div class="links-row">
+        <a class="link-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><path d="M9.75 15.02l5.75-3.27-5.75-3.27z" fill="var(--cream)"/></svg>
+          YouTube
+        </a>
+        <a class="link-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor"/></svg>
+          Instagram
+        </a>
+        <a class="link-btn" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 7h12l1 13H5z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+          Tienda
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Legacy Fitness — proyecto de presentación</footer>
+
+</body>
+</html>
